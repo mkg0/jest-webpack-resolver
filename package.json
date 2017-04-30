@@ -1,0 +1,30 @@
+{
+  "name": "jest-webpack-resolver",
+  "version": "0.0.1",
+  "description": "It is a jest plugin for enchanging jest resolving behaviour to webpack resolver through the webpack.config.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/jest",
+    "prettier": "node_modules/.bin/prettier *.js --write"
+  },
+  "author": "mkg0",
+  "license": "MIT",
+  "devDependencies": {
+    "directory-named-webpack-plugin": "^2.1.0",
+    "jest": "next",
+    "prettier": "^1.2.2",
+    "webpack": "^2.4.1"
+  },
+  "jest": {
+    "resolver": "./index.js"
+  },
+  "jestWebpackResolver": {
+    "webpackConfig": "./__mocks__/webpack.config.js"
+  },
+  "dependencies": {
+    "enhanced-resolve": "^3.1.0"
+  },
+  "peerDependencies": {
+    "jest": ">= 20.0.0"
+  }
+}
