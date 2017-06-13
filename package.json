@@ -11,9 +11,9 @@
   "license": "MIT",
   "devDependencies": {
     "directory-named-webpack-plugin": "^2.1.0",
-    "jest": "next",
-    "prettier": "^1.2.2",
-    "webpack": "^2.4.1"
+    "jest": "^20.0.4",
+    "prettier": "^1.4.4",
+    "webpack": "^2.6.1"
   },
   "jest": {
     "resolver": "./index.js"
