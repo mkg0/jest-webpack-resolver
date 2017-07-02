@@ -1,11 +1,26 @@
-var ResolverFactory = require("enhanced-resolve").ResolverFactory;
-var path = require("path");
+const ResolverFactory = require("enhanced-resolve").ResolverFactory;
+const path = require("path");
+const pkgDir = require('pkg-dir');
 
-var packagejson = require(path.join(process.cwd(), "package.json"));
-var config = (packagejson && packagejson["jestWebpackResolver"]) || {
+const packagejson = require(path.join(process.cwd(), "package.json"));
+const config = (packagejson && packagejson["jestWebpackResolver"]) || {
   webpackConfig: "./webpack.config.js"
 };
-var webpack = require(path.join(process.cwd(), config["webpackConfig"]));
+const webpackConfig = require(path.join(pkgDir.sync(), config["webpackConfig"]));
+
+const getWebpackResolveRules = function(webpackConfig){
+  if (Array.isArray(webpackConfig) ){
+    var obj = {};
+    webpackConfig.forEach(item=> Object.assign(obj, getWebpackResolveRules(item)));
+    return obj;
+  }
+  if (typeof webpackConfig === "function"){
+    const config = webpackConfig();
+    return config ? getWebpackResolveRules(config) : {};
+  } else {
+    return webpackConfig.resolve || {};
+  }
+}
 
 module.exports = function(value, options) {
   var resolver = ResolverFactory.createResolver(
@@ -14,7 +29,7 @@ module.exports = function(value, options) {
         fileSystem: require("fs"),
         useSyncFileSystemCalls: true
       },
-      webpack.resolve || {}
+      getWebpackResolveRules(webpackConfig) || {}
     )
   );
   return resolver.resolveSync({}, options.basedir, value);
