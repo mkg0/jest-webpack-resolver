@@ -1,4 +1,3 @@
-// var resolverResults = require("./deneme.js");
 var resolverResults = require("./__mocks__/main.js");
 
 describe("plugin", () => {
