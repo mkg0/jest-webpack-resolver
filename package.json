@@ -4,7 +4,7 @@
   "description": "It is a jest plugin for enchanging jest resolving behaviour to webpack resolver through the webpack.config.js",
   "main": "index.js",
   "scripts": {
-    "test": "jest && jest  --config=jest.test2.config.js && jest  --config=jest.test3.config.js",
+    "test": "jest && jest --config=jest.test2.config.js && jest  --config=jest.test3.config.js && jest  --config=jest.test4.config.json",
     "prettier": "node_modules/.bin/prettier *.js --write"
   },
   "author": "mkg0",
@@ -16,6 +16,7 @@
     "webpack": "^2.6.1"
   },
   "dependencies": {
+    "chalk": "^2.0.1",
     "command-line-args": "^4.0.6",
     "enhanced-resolve": "^3.1.0",
     "pkg-dir": "^2.0.0"
