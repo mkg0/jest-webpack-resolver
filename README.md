@@ -1,36 +1,65 @@
 # Jest Webpack Resolver Plugin
 
-It is a jest plugin for enchanging jest resolving behaviour to webpack resolver through the `webpack.config.js`.
+It is a jest plugin for enchanging jest resolving behaviour to webpack resolver through any webpack config.
 
 
-## Why not babel-plugin-module-resolver ?
+## Why?
 
-babel working like a preprocessor and webpack 2 provides custom plugins for enchanging resolving behaviours like [directory-named-webpack-plugin](https://github.com/shaketbaby/directory-named-webpack-plugin).
+webpack 2 provides some custom resolving opinions for enchanging resolving behaviours like [directory-named-webpack-plugin](https://github.com/shaketbaby/directory-named-webpack-plugin) and you can't match this kind of resolves with jest's default resolver and this plugins completely changing resolving rules.
+
+With webpack resolving you don't have to worry about these resolving options:
+
+```
+resolve.alias
+resolve.descriptionFiles
+resolve.extensions
+resolve.mainFields
+resolve.mainFiles
+resolve.modules
+resolve.plugins
+```
 
 ## Install
-Jest resolver option supported for jest >=20+ versions and 20+ versions didn't released yet. For now install @next version with `yarn install jest@next`
+> Jest resolver option supported for jest >=20 versions.
 
-install dependency
+install with yarn
 ```
-npm install jest-webpack-resolver -D
-
-//or
-
 yarn add jest-webpack-resolver -D
 ```
 
-add to jest configuration
+or install with npm
 ```
-"resolver": "jest-webpack-resolver"
+npm install jest-webpack-resolver -D
 ```
 
-by default plugin tries to detect `webpack.config.j` at your project root. If you want to change it add `jestWebpackResolver` property to your package.json:
+add to your jest configuration
 ```
-  jestWebpackResolver: {
-    "webpackConfig": {
-      "./path/to/webpack.config.js"
-    }
+{
+  "resolver": "jest-webpack-resolver"
+}
+```
+
+## Configuration
+
+By default plugin tries to detect `webpack.config.js`. You can configure it from `package.json` or `jest.config.js` (or any other jest config file)
+
+add `jestWebpackResolver` to your `package.json` file at root level:
+```json
+{
+  "name": "",
+  "version": "",
+  "jestWebpackResolver": {
+    "webpackConfig": "./path/to/webpack.config.js"
   }
-
+}
 ```
 
+or at your `jest.config.js` or `jest.config.json` file
+```js
+{
+  // ...
+  jestWebpackResolver: {
+    webpackConfig: './path/to/webpack.config.js'
+  }
+}
+```
