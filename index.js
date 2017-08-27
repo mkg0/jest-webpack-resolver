@@ -35,7 +35,10 @@ const log = function(message, status = "log") {
   }
 };
 
-const cliOptions = commandLineArgs({ name: "config", type: String });
+const cliOptions = commandLineArgs(
+  { name: "config", type: String },
+  { partial: true }
+);
 const packagejson = require(path.join(root, "package.json"));
 const jestConfig = getJestConfig(cliOptions.config);
 
