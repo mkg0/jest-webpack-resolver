@@ -80,6 +80,8 @@ const getWebpackResolveRules = function(webpackConfig) {
   }
 };
 
+const resolveRules = getWebpackResolveRules(webpackConfig);
+
 module.exports = function(value, options) {
   const resolver = ResolverFactory.createResolver(
     Object.assign(
@@ -87,7 +89,7 @@ module.exports = function(value, options) {
         fileSystem: require("fs"),
         useSyncFileSystemCalls: true
       },
-      getWebpackResolveRules(webpackConfig) || {}
+      resolveRules, 
     )
   );
   return resolver.resolveSync({}, options.basedir, value);
