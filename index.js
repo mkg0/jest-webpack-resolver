@@ -89,7 +89,7 @@ module.exports = function(value, options) {
         fileSystem: require("fs"),
         useSyncFileSystemCalls: true
       },
-      resolveRules, 
+      resolveRules
     )
   );
   return resolver.resolveSync({}, options.basedir, value);
