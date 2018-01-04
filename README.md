@@ -63,3 +63,13 @@ or at your `jest.config.js` or `jest.config.json` file
   }
 }
 ```
+
+to stop the 'Webpack Resolver using: ./...' message use the silent option
+```json
+{
+  "jestWebpackResolver": {
+    "silent": true,
+    "webpackConfig": "./path/to/webpack.config.js"
+  }
+}
+```

@@ -25,7 +25,13 @@ const getJestConfig = function(cliConfigParameter) {
   return {};
 };
 
+let isSilent = false;
+
 const log = function(message, status = "log") {
+  if (isSilent) {
+    return;
+  }
+
   if (status === "log") {
     console.log(chalk.bgBlue.bold("Webpack Resolver"), message);
   } else {
@@ -45,6 +51,9 @@ const jestConfig = getJestConfig(cliOptions.config);
 let options =
   (jestConfig && jestConfig["jestWebpackResolver"]) ||
   (packagejson && packagejson["jestWebpackResolver"]);
+
+isSilent = options.silent;
+
 if (!(options && options.webpackConfig)) {
   options = {
     webpackConfig: "./webpack.config.js"
