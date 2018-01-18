@@ -1,6 +1,6 @@
 {
   "name": "jest-webpack-resolver",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "It is a jest plugin for enchanging jest resolving behaviour to webpack resolver through the webpack.config.js",
   "repository": {
     "type": "git",
