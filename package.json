@@ -14,15 +14,15 @@
   "author": "mkg0",
   "license": "MIT",
   "devDependencies": {
-    "directory-named-webpack-plugin": "^2.1.0",
-    "jest": "^20.0.4",
+    "directory-named-webpack-plugin": "^2.3.0",
+    "jest": "^22.4.2",
     "prettier": "^1.4.4",
-    "webpack": "^2.6.1"
+    "webpack": "^4.1.0"
   },
   "dependencies": {
     "chalk": "^2.0.1",
-    "command-line-args": "^4.0.6",
-    "enhanced-resolve": "^3.1.0",
+    "command-line-args": "^5.0.2",
+    "enhanced-resolve": "^4.0.0",
     "pkg-dir": "^2.0.0"
   },
   "peerDependencies": {
