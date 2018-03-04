@@ -1,8 +1,12 @@
 const commandLineArgs = require("command-line-args");
-const ResolverFactory = require("enhanced-resolve").ResolverFactory;
+const {
+  NodeJsInputFileSystem,
+  CachedInputFileSystem,
+  ResolverFactory
+} = require("enhanced-resolve");
 const pkgDir = require("pkg-dir");
 const path = require("path");
-var fs = require("fs");
+const fs = require("fs");
 const chalk = require("chalk");
 const root = pkgDir.sync();
 
@@ -84,16 +88,16 @@ const getWebpackResolveRules = function(webpackConfig) {
 };
 
 const resolveRules = getWebpackResolveRules(webpackConfig);
+const resolver = ResolverFactory.createResolver(
+  Object.assign(
+    {
+      fileSystem: new CachedInputFileSystem(new NodeJsInputFileSystem(), 4000),
+      useSyncFileSystemCalls: true
+    },
+    resolveRules
+  )
+);
 
 module.exports = function(value, options) {
-  const resolver = ResolverFactory.createResolver(
-    Object.assign(
-      {
-        fileSystem: require("fs"),
-        useSyncFileSystemCalls: true
-      },
-      resolveRules
-    )
-  );
   return resolver.resolveSync({}, options.basedir, value);
 };
